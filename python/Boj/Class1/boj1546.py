@@ -1,0 +1,5 @@
+N=int(input())
+arr=list(map(int,input().split()))
+MAX=max(arr)
+newArr=list( map(lambda x : x/MAX*100 , [i for i in arr]))
+print(sum(newArr)/len(newArr))
