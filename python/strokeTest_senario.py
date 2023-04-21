@@ -37,7 +37,7 @@ def shootRequests(userLoopNum):
                                   stroke_object5, stroke_object6,
                                   stroke_object7, stroke_object8, stroke_object9]
 
-                    requests.post("http://localhost:7070/api/v1/neopen/upload/{}/{}/{}".format(userLoopNum, courseId, courseTimeId), json=json.loads(objectList[strokeIndex % 10]))
+                    requests.post("https://liveroom.mbest.co.kr/api/v1/neopen/upload/{}/{}/{}".format(userLoopNum, courseId, courseTimeId), json=json.loads(objectList[strokeIndex % 10]))
 def main():
     userLoopNum = 100
     for user in range(userLoopNum):

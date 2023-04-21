@@ -6,11 +6,9 @@
 #define C_STATION_H
 
 
-
 class station {
 
 };
-
 
 
 #endif //C_STATION_H

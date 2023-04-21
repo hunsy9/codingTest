@@ -6,11 +6,9 @@
 #define C_VECTOR_H
 
 
-
 class vector {
 
 };
-
 
 
 #endif //C_VECTOR_H

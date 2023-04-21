@@ -4,5 +4,7 @@
 N=int(input())
 list=[]
 for i in range(N):
-    list.append(map(lambda x,y:int(x) , input().split()))
-print(list)
+    list.append(input())
+list.sort(key=lambda x: int(x.split()[0]))
+for result in list:
+    print(result)

@@ -1,53 +1,63 @@
-from collections import deque
-def judge(originArr, targetArr):
-    test = []
-    dq = deque()
-    s = set()
-    complexCount = 0
-    for i in range(len(originArr)):
-        diff = originArr[i] - targetArr[i]
-        test.append(diff)
-        if len(dq)!=0 and dq[-1] != diff and diff != 0:
-            complexCount += 1
-        if diff != 0: # 0이 아닐때
-            s.add(diff)
-            dq.append(diff)
-        else: # 0일때
-            if len(dq)!=0 and dq[-1] != 0:
-                dq.append(diff)
-    for j in range(len(dq)):
-        if dq[0] == 0:
-            dq.popleft()
-        if dq[-1] == 0:
-            dq.pop()
-    diffNumCount = len(s) #set을 이용하여 갯수 종류 파악
-    betweenZeroCount = dq.count(0) ## 숫자사이에 낀 0의 갯수를 파악
-    minusCount = len([x for x in dq if x < 0])
-    print("dq: ",dq)
-    print("complexity: ", complexCount)
-    print("originalDiffList: ",test)
-    print("sum of originalDiffList: ",sum(test))
-    print("diffNumCount:", diffNumCount)
-    print("betweenZeroCount:", betweenZeroCount)
-    print("minusCount: ", minusCount)
-    if diffNumCount == 1 and betweenZeroCount == 0:
-        print("one")
-        return
-    if diffNumCount == 2 and minusCount != 0 and complexCount > 1:
-        print("over")
-        return
-    if (diffNumCount == 1 and diffNumCount == 1) or (diffNumCount == 2 and betweenZeroCount < 2) or (diffNumCount == 3 and betweenZeroCount == 0):
-        print("two")
-        return
-    else:
-        print("over")
+def check_reverse_from_front(fishes):
+    origin_v = 0
+    origin_i = 0
 
-N = int(input())
-originArray = list(range(1,N+1))
+    for i in range(len(fishes)):
+        if fishes[i] != i + 1:
+            origin_v = i + 1
+            for j in range(i, len(fishes)):
+                if abs(fishes[j]) == origin_v:
+                    origin_i = j
+                    break
+
+            fishes[i:origin_i + 1] = fishes[i:origin_i + 1][::-1]
+            for j in range(i, origin_i + 1):
+                fishes[j] *= -1
+            break
+
+    for i in range(len(fishes)):
+        if fishes[i] != i + 1:
+            return False
+    return True
+
+
+def check_reverse_from_back(reversed_fish):
+    org_value, org_idx = 0, 0
+
+    for i in range(len(reversed_fish) - 1, -1, -1):
+        if reversed_fish[i] != i + 1:
+            org_value = i + 1
+            for j in range(i, -1, -1):
+                if abs(reversed_fish[j]) == org_value:
+                    org_idx = j
+                    break
+
+            reversed_fish[org_idx:i + 1] = reversed_fish[org_idx:i + 1][::-1]
+            for j in range(org_idx, i + 1):
+                reversed_fish[j] *= -1
+            break
+
+    for i in range(len(fishes)):
+        if fishes[i] != i + 1:
+            return False
+    return True
+
+
+n = int(input())
+
 for i in range(5):
-    targetArr = list(map(int,input().split()))
-    if len(list(filter(lambda x: x < 0 , targetArr))) == 0:
-        print("over")
-        continue
-    judge(originArray,targetArr)
+    fishes = list(map(int, input().split()))
+    reversed_fish = fishes[::-1]
+
+    if check_reverse_from_front(fishes):
+        print("one")
+    else:
+        check_reverse_from_back(reversed_fish)
+        if check_reverse_from_front(fishes) or check_reverse_from_back(reversed_fish):
+            print("two")
+        else:
+            print("over")
+
+
+
 

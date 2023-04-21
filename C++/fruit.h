@@ -6,11 +6,9 @@
 #define C_FRUIT_H
 
 
-
 class fruit {
 
 };
-
 
 
 #endif //C_FRUIT_H

@@ -1,3 +1,4 @@
+import sys
 set = []
 def add(num):
     if num not in set:
@@ -29,9 +30,9 @@ def commandController(command, num):
 
 N=int(input())
 for i in range(N):
-    inputString = input()
-    command = inputString.split(" ")[0]
-    if command == "all" :
+    inputString = sys.stdin.readline()
+    command = inputString.split(" ")[0].rstrip()
+    if command == "all":
         all()
     elif command == "empty":
         empty()

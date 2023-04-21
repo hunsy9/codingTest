@@ -6,11 +6,9 @@
 #define C_QUASI_H
 
 
-
 class quasi {
 
 };
-
 
 
 #endif //C_QUASI_H

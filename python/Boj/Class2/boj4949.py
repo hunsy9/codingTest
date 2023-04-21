@@ -1,32 +1,30 @@
-import sys
 stack=[]
-a = []
+specialString=["(", ")", "[", "]"]
+def strip_all_not_in_specialString(inputString):
+    newString=[]
+    for i in inputString:
+        if i in specialString:
+            newString.append(i)
+    return newString
+
 while True:
-    b = sys.stdin.readline().rstrip()
-    if b==".":
+    inp = input()
+    if inp == ".":
         break
-    a.append(b)
-for j in range(len(a)):
-    for i in a[j]:
-        if i=="[" or i=="(":
+    inputString = inp.strip()
+    newString = strip_all_not_in_specialString(inputString)
+    for i in newString:
+        if len(stack) != 0 and (stack[-1] == "(" and i == ")" or stack[-1] == "[" and i == "]"):
+            stack.pop()
+        else:
             stack.append(i)
-        if i=="]":
-            if len(stack)==0:
-                continue
-            if stack[-1]=="[":
-                stack.pop()
-        if i==")":
-            if len(stack)==0:
-                continue
-            if stack[-1]=="(":
-                stack.pop()
-        if i==".":
-            if len(stack) == 0:
-                print("yes")
-                break
-            else:
-                print("no")
-                break
-    stack=[]
+    print("yes") if len(stack)==0 else print("no")
+    stack.clear()
+
+
+
+
+
+
 
 

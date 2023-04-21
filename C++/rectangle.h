@@ -6,11 +6,9 @@
 #define C_RECTANGLE_H
 
 
-
 class rectangle {
 
 };
-
 
 
 #endif //C_RECTANGLE_H

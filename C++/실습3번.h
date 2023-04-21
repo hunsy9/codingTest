@@ -6,11 +6,9 @@
 #define C_실습3번_H
 
 
-
 class 실습3번 {
 
 };
-
 
 
 #endif //C_실습3번_H

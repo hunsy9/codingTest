@@ -6,11 +6,9 @@
 #define C_FLIP_H
 
 
-
 class flip {
 
 };
-
 
 
 #endif //C_FLIP_H

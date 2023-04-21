@@ -1,20 +1,20 @@
 N,M=map(int, input().split())
-cards= list(map(int, input().split()))
-cards.sort(reverse=True)
-temp=[]
-print(cards)
-sum = 0
-for i in range(N):
-    sum += cards[i]
-    for j in range(i+1,N):
-        sum += cards[j]
+cards= sorted(list(map(int, input().split())))
+
+sumSet = set()
+sum=0
+for i in range(0,N-2):
+    for j in range(i+1,N-1):
         for k in range(j+1,N):
-            sum += cards[k]
+            sum = cards[i] + cards[j] + cards[k]
             if sum <= M:
-                print(sum)
-                temp.append(sum)
+                sumSet.add(sum)
             sum = 0
-print(max(temp))
+print(max(sumSet))
+
+
+
+
 
 
 
